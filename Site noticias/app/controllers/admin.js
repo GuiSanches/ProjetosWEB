@@ -31,7 +31,7 @@ module.exports.noticias_salvar = (Application, req, res) => {
     let noticiasModel = new Application.app.models.NoticiasDAO(connection);
 
     noticiasModel.salvarNoticia(noticia, (error, result) => {
-        res.redirect('/noticias');
+        res.render('noticias/noticias', { noticias: result });
     });
 
 }

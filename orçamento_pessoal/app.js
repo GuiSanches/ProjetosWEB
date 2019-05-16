@@ -87,13 +87,14 @@ function cadastrarDespesa() {
     let descricao = document.getElementById("descricao");
     let valor = document.getElementById("valor");
 
-    let despesa = new Despesa(
+    const despesa = new Despesa(
         ano.value,
         mes.value,
         dia.value, 
         tipo.value, 
         descricao.value, 
         valor.value);
+
     if(despesa.validarDados()){
         bd.gravar(despesa)            
         document.getElementById('modal_titulo').innerHTML = 'Registro inserido com sucesso'
@@ -125,7 +126,7 @@ function carregaListaDespesas(despesas = Array(), filtro = false) {
     listaDespesas.innerHTML = ''
   
     //percorrer o array despesas, listando cada despesa de forma dinamica
-    despesas.forEach(function(d) {
+    despesas.forEach((d) => {
         //criando a linha (tr)
         let linha = listaDespesas.insertRow()
 
@@ -152,7 +153,7 @@ function carregaListaDespesas(despesas = Array(), filtro = false) {
         btn.className = 'btn btn-danger'
         btn.innerHTML = '<i class="fas fa-times"></i>'
         btn.id = 'id_despesa_' + d.id
-        btn.onclick = function() {
+        btn.onclick = () => {
             //remover a despesa
             let id = this.id.replace('id_despesa_', '')
             bd.remover(id)
